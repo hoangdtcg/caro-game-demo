@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caro Game</title>
+</head>
+<style>
+    td {
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        font-size: 30px;
+    }
+</style>
+
+<body>
+    <table id="board" border="1px" cellspacing="0px">
+
+    </table>
+
+    <script>
+        //Tạo bàn cờ
+        // let r = +prompt("Số hàng");
+        // let c = +prompt("Số cột");
+        const PLAYER_X = "X";
+        const PLAYER_O = "O";
+        const EMPTY_VALUE ="";
+        let turn = PLAYER_X;
+
+        creatBoard(10, 10);
+        function creatBoard(row, col) {
+            let html = "";
+            for (let i = 0; i < row; i++) {
+                html += "<tr>";
+                for (let j = 0; j < col; j++) {
+                    // html += "<td onclick='clickCell("+i+','+j+")'></td>"
+                    html += `<td id="cell-${i}-${j}" onclick="clickCell(${i},${j})"></td>`; //ES6
+                }
+                html += "</tr>";
+            }
+
+            document.getElementById("board").innerHTML = html;
+        }
+
+        function clickCell(i, j) {
+            // console.log(i+"-"+j);
+            let id = "cell-" + i + "-" + j;
+            let cell = document.getElementById(id);
+            if (cell.innerHTML == EMPTY_VALUE) {
+                if (turn == PLAYER_X) {
+                    cell.innerHTML = PLAYER_X;
+                    turn = PLAYER_O;
+                } else {
+                    cell.innerHTML = PLAYER_O;
+                    turn = PLAYER_X;
+                }
+            }else{
+                alert("Đánh chỗ khác đê");
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
